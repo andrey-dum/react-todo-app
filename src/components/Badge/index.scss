@@ -1,0 +1,51 @@
+.badge {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    &:hover {
+        cursor: pointer;
+    }
+    
+    
+    &--pink {
+        background: #D9AFD9;
+    }
+    &--orange {
+        background: orange;
+    }
+    &--peach {
+        background: #FBAB7E;
+    }
+    &--apple {
+        background: #85FFBD;
+    }
+    &--sky {
+        background: #B5FFFC;
+    }
+    &--red {
+        background: #FF6464;
+    }
+    &--black {
+        background: #110133;
+    }
+    &--purple {
+        background: #C355F5;
+    }
+    &--lime {
+        background: #B6E6BD;
+    }
+    &--pink {
+        background: #FFBBCC;
+    }
+    &--blue {
+        background: #64C4ED;
+    }
+    &--green {
+        background: #42B883;
+    }
+    &--grey {
+        background: #C9D1D3;
+    }
+}
+

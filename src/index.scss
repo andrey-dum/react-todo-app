@@ -23,23 +23,32 @@ code {
   width: 100%;
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color: #8EC5FC;
   background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
   padding: 10px;
 }
+h1 {
+  margin-bottom: 30px;
+  font-size: 68px;
+  font-weight: 600;
+  color: #5c7aa2;
+}
 
 .todo {
   width: 100%;
   max-width: 880px;
-  height: 580px;
+  min-height: 580px;
   box-shadow: 1px 2px 16px #999;
   border-radius: 10px;
   border: 1px solid #f1f1f1;
   background: #fff;
   overflow: hidden;
-  font-size: 16px;
+  font-size: 15px;
+  position: relative;
+ 
   &__sidebar {
     background: #f4f6f8;
     max-width: 240px;
@@ -48,4 +57,22 @@ code {
     padding: 50px 20px;
   }
   
+}
+
+.button {
+  background: none;
+  border: none;
+  padding: 10px;
+  background: #54D892;
+  border-radius: 5px;
+  font-weight: 500;
+  color: #ffffff;
+  &:hover {
+      cursor: pointer;
+      background: darken(#54D892, 5%);
+  }
+  &:active {
+      cursor: pointer;
+      background: darken(#54D892, 10%);
+  }
 }

@@ -1,0 +1,64 @@
+.addListForm {
+    width: 240px;
+    height: 150px;
+    background: #fff;
+    box-shadow: 3px 6px 12px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    margin-top: -15px;
+    padding: 15px 24px;
+    z-index: 12;
+    position: absolute;
+    input {
+        padding: 10px 10px;
+        margin-bottom: 14px;
+        width: 100%;
+        border: 1px solid #f2f2f2;
+        border-radius: 5px;
+        font-weight: 500;
+        &::placeholder {
+            color: rgb(190, 190, 190);
+          }
+        &:focus {
+            border-color: #ededed;
+        }
+    }
+    .button {
+        width: 100%;
+        // &:hover {
+        //     cursor: pointer;
+        //     background: darken(#54D892, 5%);
+        // }
+        // &:active {
+        //     cursor: pointer;
+        //     background: darken(#54D892, 10%);
+        // }
+    }
+}
+.addListForm__close {
+    font-size: 23px;
+    position: absolute;
+    top: -8px;
+    cursor: pointer;
+    right: -8px;
+    background: rgb(250, 150, 150);
+    line-height: 0;
+    border-radius: 50%;
+    color: #555;
+    padding: 2px;
+    &:active {
+        background: rgb(250, 116, 116);
+    }
+}
+.list__colors {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    .badge {
+       
+        width: 18px;
+        height: 18px;
+        &.active {
+            border: 2px solid #000;
+        }
+    }
+}

@@ -1,50 +1,72 @@
 .category__list {
-  
+    margin-bottom: 30px;
+    color: #555;
+    font-weight: 500;
     li {
         display: flex;
         align-items: center;
         padding: 10px 12px;
         margin-bottom: 5px;
-        &:first-child {
-            margin-bottom: 25px;
-            font-weight: 600;
+        transition: all .3s ease;
+        // &:first-child {
+        //     margin-bottom: 25px;
+        //     font-weight: 600;
+        // }
+        &.list__add-button {
+            opacity: .4;
+            &:hover {
+                opacity: 1;
+            }
         }
         &.active, &:hover {
             background: #fff;
             box-shadow: 0px 2px 10px rgba(0,0,0,0.04);
             border-radius: 4px;
             cursor: pointer;
+            
         }
         .colorIcon {
             width: 10px;
             height: 10px;
             border-radius: 50%;
-            margin-right: 10px;
+            // margin-right: 10px;
         }
         .todo__icon {
             display: inline-flex;
             align-items: center;
+            margin-right: 10px;
         }
         svg {
-            margin-right: 8px;
+            // margin-right: 8px;
             color: #555;
             font-size: 18px;
         }
-
-        .badge {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            margin-right: 10px;
-            &--green {
-                background: green;
-            }
-            &--pink {
-                background: pink;
-            }
-            &--orange {
-                background: orange;
+        .list__name {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            flex: 1;
+            span {
+                svg {
+                    color: rgb(202, 202, 202);
+                    font-size: 22px;
+                    &:hover {
+                        color: #999;
+                    }
+                }
+                transition: all .5s ease;
+                display: block;
+                width: 18px;
+                height: 18px;
+                text-align: center;
+                opacity: 0;
             }
         }
+        &:hover .list__name span {
+            opacity: 1;
+            
+        }
+
+        
     }
 }
