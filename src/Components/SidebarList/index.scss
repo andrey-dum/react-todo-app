@@ -5,8 +5,8 @@
     li {
         display: flex;
         align-items: center;
-        padding: 10px 12px;
-        margin-bottom: 5px;
+        padding: 10px 10px;
+        margin-bottom: 2px;
         transition: all .3s ease;
         // &:first-child {
         //     margin-bottom: 25px;
@@ -46,7 +46,12 @@
             display: flex;
             justify-content: space-between;
             flex: 1;
-            span {
+            .remove__btn {
+                display: flex;
+                align-items: center;
+                transition: all .5s ease;
+                text-align: center;
+                opacity: 0;
                 svg {
                     color: rgb(202, 202, 202);
                     font-size: 22px;
@@ -54,15 +59,9 @@
                         color: #999;
                     }
                 }
-                transition: all .5s ease;
-                display: block;
-                width: 18px;
-                height: 18px;
-                text-align: center;
-                opacity: 0;
             }
         }
-        &:hover .list__name span {
+        &:hover .list__name .remove__btn {
             opacity: 1;
             
         }

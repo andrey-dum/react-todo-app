@@ -4,8 +4,15 @@ import { MdClose } from "react-icons/md";
 import './index.scss';
 import Badge from '../Badge/Badge';
 
-const List = ({items, isRemoveble, onShowForm}) => {
+const List = ({items, isRemoveble, onShowForm,  removeList}) => {
     
+    const onRemoveList = (listId) => {
+        if (window.confirm('Вы действительно хотите удалить список?')) {
+            removeList(listId)
+        }
+        
+    }
+
     return (
         <ul className="category__list">
             {items.map(item => <li onClick={onShowForm} key={item.id} className={classNames(item.className, {'active': item.active})}>
@@ -13,7 +20,7 @@ const List = ({items, isRemoveble, onShowForm}) => {
                     {/* { item.icon || <span className="colorIcon" style={{background: item.color}}></span> } */}
                     {item.icon || <Badge key={`${item.id} ${item.color}`} color={item.color}/> }
                 </div>
-                <span className="list__name">{item.name} {isRemoveble && <span className="remove__btn"><MdClose /></span>}</span>
+                <span className="list__name">{item.name} {isRemoveble && <span className="remove__btn" onClick={() => onRemoveList(item.id)}><MdClose /></span>}</span>
             </li>)}
         </ul>
     );

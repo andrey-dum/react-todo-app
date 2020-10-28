@@ -31,33 +31,52 @@ code {
   padding: 10px;
 }
 h1 {
-  margin-bottom: 30px;
-  font-size: 68px;
-  font-weight: 600;
+  margin-bottom: 20px;
+  font-size: 64px;
+  font-weight: 500;
   color: #5c7aa2;
 }
 
 .todo {
   width: 100%;
-  max-width: 880px;
-  min-height: 580px;
+  //max-width: 880px;
+  max-width: 900px;
+  // max-width: 1100px;
+  min-height: 600px;
+  // min-height: 700px;
+  display: flex;
   box-shadow: 1px 2px 16px #999;
   border-radius: 10px;
   border: 1px solid #f1f1f1;
   background: #fff;
-  overflow: hidden;
-  font-size: 15px;
+  // overflow: hidden;
+  font-size: 14px;
   position: relative;
- 
+  &__tasks {
+    flex: 1;
+    padding: 46px 40px;
+  }
   &__sidebar {
     background: #f4f6f8;
-    max-width: 240px;
-    height: 100%;
+    max-width: 280px;
+    // max-width: 240px;
+    // height: 100%;
+    min-height: 600px;
     border-right: 1px solid #f1f1f1;
     padding: 50px 20px;
+    border-radius: 10px 0 0 10px;
   }
   
 }
+
+
+.tasks {
+  &__title {
+    color: #64c4ed;
+    font-size: 34px;
+  }
+}
+
 
 .button {
   background: none;
