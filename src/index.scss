@@ -58,7 +58,8 @@ h1 {
   }
   &__sidebar {
     background: #f4f6f8;
-    max-width: 280px;
+    width: 270px;
+    min-width: 250px;
     // max-width: 240px;
     // height: 100%;
     min-height: 600px;
@@ -69,13 +70,6 @@ h1 {
   
 }
 
-
-.tasks {
-  &__title {
-    color: #64c4ed;
-    font-size: 34px;
-  }
-}
 
 
 .button {

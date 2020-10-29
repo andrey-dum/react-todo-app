@@ -1,0 +1,127 @@
+.tasks {
+    .tasksTitle__wrapper {
+        display: flex;
+        align-items: center;
+        padding-bottom: 18px;
+        border-bottom: 1px solid #ededed;
+        margin-bottom: 20px;
+        svg {
+            font-size: 24px;
+            color: #ccc;
+            margin-left: 20px;
+            &:hover {
+                color: #666;
+                cursor: pointer;
+            }
+        }
+    }
+    &__title {
+      color: #64c4ed;
+      font-size: 34px;
+      
+    }
+
+    .checkbox {
+        input {
+            display: none;
+        }
+        
+        label {
+            margin-right: 10px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all .25s ease;
+            svg {
+                color: #ccc;
+                opacity: 0;font-size: 12px;
+                transition: all .25s ease;
+            }
+            
+        }
+
+        input:checked + label {
+            background: #4dd599;
+            border-color: #4dd599;
+            svg {
+                color: #ffffff;
+                opacity: 1;
+
+            }
+            
+        }
+        
+    }
+    .add__task {
+        color: #cccccc;
+        display: flex;
+        align-items: center;
+        margin-top: 25px;
+        transition: all .25s;
+        padding: 10px;
+        justify-content: center;
+        max-width: 150px;
+        &:hover {
+            color: #555555;
+            cursor: pointer;
+            box-shadow: 0px 1px 10px rgb(218, 218, 218);
+        }
+        svg {
+            margin-right: 6px;
+        }
+    }
+    .task {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+        padding: 10px;
+        &:hover {
+            box-shadow: 0px 2px 12px rgb(221, 221, 221);
+            label {
+                background: #f2f2f2;
+                border-color: #f2f2f2;
+                svg {
+                    opacity: 1;
+                }
+            }
+            .task__meta {
+                svg {
+                    opacity: 1;
+                }
+            }
+            
+        }
+        
+        &__text {
+            flex: 1;
+            cursor: pointer;
+            
+            color: #555;
+            &:hover {
+                
+                color: #222;
+            }
+        }
+        &__meta {
+           font-size: 18px;
+           
+           svg {
+               margin: 0 4px;
+               color: #cccccc;
+               cursor: pointer;
+               opacity: 0;
+               &:hover {
+                   color: #555555;
+               }
+           }
+        }
+        
+    }
+  }
+  

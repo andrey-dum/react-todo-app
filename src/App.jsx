@@ -1,11 +1,13 @@
 import React, {useState} from 'react';
 
-import { BsList } from "react-icons/bs";
-
 import List from './components/SidebarList/List';
 import AddList from './components/AddList/AddList';
+import Tasks from './components/Tasks/Tasks';
+
+import { BsList } from "react-icons/bs";
 
 import db from './db.json'
+
 
 function App() {
   const ListsColors = db.lists.map(item => {
@@ -46,10 +48,7 @@ function App() {
         </div>
 
         <div className="todo__tasks">
-          <div className="tasks">
-            <h2 className="tasks__title">Фронтенд</h2>
-
-          </div>
+          <Tasks />
 
         </div>
        
