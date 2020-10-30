@@ -7,36 +7,33 @@ import { MdClose } from "react-icons/md";
 import { AiOutlinePlus } from "react-icons/ai";
 
 
-const Tasks = () => {
+const Tasks = ({list}) => {
     const [check, setCheck] = useState(false)
 
-    const onSelect = (e) => {
-        setCheck(e.target.checked)
-        console.log(check)
+    const onSelect = (task) => {
+        //task = {...task, completed: !completed}
+        //setCheck(e.target.checked)
     }
 
     return (
         <div className="tasks">
             <div className="tasksTitle__wrapper">
-                <h2 className="tasks__title">Фронтенд</h2>
+                <h2 className="tasks__title">{list.name}</h2>
                 <BsPencil />
             </div>
 
             <div className="tasks__items">
-            {[
-                {'text': 'Lorem, ipsum dolor.'},
-                {'text': 'Lorem ipsum dolor sit amet.'},
-                {'text': 'Lorem ipsum dolor sit amet consectetur.'},
-        ].map(item => (
-                <div className="task">
+            {list.tasks && list.tasks.map(task => (
+                <div className="task" key={task.id}>
                     <div className="checkbox">
-                        <input onClick={onSelect} id="check" type="checkbox"/>
-                        <label htmlFor="check">
+                        <input onClick={() => onSelect(task)} checked={task.completed} id={`task-${task.id}`} type="checkbox"/>
+                        <label htmlFor={`task-${task.id}`}>
                             <FaCheck/>
                         </label>
                     </div>
                     <div className="task__text">
-                        <input type="text"/>   {item.text}
+                        {/* <input type="text"/> */}
+                        {task.text}
                     </div>
                     <div className="task__meta">
                         <BsPencil />

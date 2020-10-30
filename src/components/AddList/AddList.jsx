@@ -1,17 +1,23 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 import List from '../SidebarList/List';
 import { MdClose } from "react-icons/md";
 
 import './index.scss';
 import Badge from '../Badge/Badge';
-
+import * as axios from 'axios';
 
 const AddList = ({items, colors, onAddList}) => {
 
   const [showForm, setShowForm] = useState(false);
-  const [selectedColor, setSelectedColor] = useState(colors[0].id);
+  const [selectedColor, setSelectedColor] = useState(3);
   const [input, setInput] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+
+
+  useEffect(() => {
+    setSelectedColor(colors ? colors[0].id : 5);
+  }, [colors]);
 
   const handleChange = (e) => {
     setInput(e.currentTarget.value)
@@ -36,14 +42,18 @@ const AddList = ({items, colors, onAddList}) => {
      alert('List name is empty!');
      return;
    }
-   onAddList({
-    "id": Math.random() * 100,
-    "name": input,
-    "colorId": selectedColor,
-    'color': colors.filter(c => c.id === selectedColor)[0].name,
-  })
-  
-  onClose();
+   setIsLoading(true)
+   axios.post('http://localhost:3001/lists', {name: input, colorId: selectedColor}).then(({data}) => {
+    const color = colors.filter(c => c.id === selectedColor)[0].name;
+    const listObj = {...data, color: {name: color}}
+
+    onAddList(listObj)
+    onClose();
+    
+  }).finally(() => {
+    setIsLoading(false);
+  });
+
  }
 
   return (
@@ -64,7 +74,7 @@ const AddList = ({items, colors, onAddList}) => {
                   colorItem={color} 
                   activeClass={color.id === selectedColor && 'active'} />)}
             </div>
-            <button onClick={addList} className="button">Create List</button>
+            <button onClick={addList} className="button">{ isLoading ? 'Loading...' : 'Create List' }</button>
           </div> }
         </>
   );
