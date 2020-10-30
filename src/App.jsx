@@ -26,11 +26,13 @@ function App() {
   //const [lists, setLists] = useState(ListsColors);
   const [lists, setLists] = useState(null);
   const [colors, setColors] = useState(null);
+  const [aciveList, setActiveList] = useState(null);
   
 
 useEffect(() => {
   axios.get('http://localhost:3001/lists?_expand=color&_embed=tasks').then(({data}) => {
     setLists(data)
+    setActiveList(data[1])
   })
   axios.get('http://localhost:3001/colors').then(({data}) => {
     setColors(data)
@@ -47,6 +49,24 @@ useEffect(() => {
   const removeList = (listId) => {
     setLists(lists.filter(list => list.id !== listId));
   }
+  const onClickItem = (item) => {
+    setActiveList(item)
+
+  }
+  
+  const onEditListTitle = (listId, name) => {
+    console.log(listId, name)
+    const newLists = lists.map(list => {
+      if (list.id === listId) {
+        list.name = name 
+      } 
+      return list;
+    });
+    setLists(newLists)
+ 
+    
+  }
+
 
   return (
 
@@ -55,7 +75,16 @@ useEffect(() => {
       <div className="todo">
         <div className="todo__sidebar">
         { lists ? <List items={[{id: 1, icon: <BsList />, name: 'All tasks'},]} /> : <div className="loading">LOADING...</div> }
-          { lists ? <List items={lists} isRemoveble removeList={removeList} /> : <div className="loading">LOADING...</div> }
+          { lists 
+            ? 
+              <List 
+                items={lists} 
+                isRemoveble 
+                removeList={removeList} 
+                onClickItem={onClickItem}
+                aciveList={aciveList && aciveList}
+                /> 
+            : <div className="loading">LOADING...</div> }
           
           <AddList 
             items={[{id: '55', icon: '+', name: 'Add New List', className: 'list__add-button'}]}
@@ -76,7 +105,8 @@ useEffect(() => {
          </Route>
        
         </Switch> */}
-          { lists && <Tasks list={lists[1]} /> }
+     
+          { lists && aciveList && <Tasks list={aciveList && aciveList} onEditListTitle={onEditListTitle} /> }
 
         </div>
        

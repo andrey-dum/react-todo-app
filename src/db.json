@@ -24,6 +24,11 @@
       "name": "Спорт",
       "colorId": 3,
       "id": 6
+    },
+    {
+      "name": "thy",
+      "colorId": 4,
+      "id": 7
     }
   ],
   "tasks": [
