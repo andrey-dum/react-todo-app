@@ -1,4 +1,6 @@
 import React, {useState} from 'react';
+import * as axios from 'axios';
+
 import './index.scss';
 
 import { BsPencil } from "react-icons/bs";
@@ -17,8 +19,17 @@ const Tasks = ({list, onEditListTitle}) => {
 
     const editListTitle = () => {
         const newTitle = window.prompt('List Title', list.name)
-       if (newTitle !== '') {
-        onEditListTitle(list.id, newTitle)
+
+        if (newTitle !== '') {
+            onEditListTitle(list.id, newTitle)
+
+        axios
+            .patch('http://localhost:3001/lists/' + list.id, {
+                name: newTitle
+            })
+            .catch(() => {
+                alert('Не удалось обновить имя списка')
+            });
        }
     }
 
