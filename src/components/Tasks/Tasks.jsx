@@ -7,9 +7,10 @@ import { BsPencil } from "react-icons/bs";
 import { FaCheck } from "react-icons/fa";
 import { MdClose } from "react-icons/md";
 import { AiOutlinePlus } from "react-icons/ai";
+import AddTaskForm from './AddTaskForm';
 
 
-const Tasks = ({list, onEditListTitle}) => {
+const Tasks = ({list, onEditListTitle, onAddTask}) => {
     const [check, setCheck] = useState(false)
     
     const onSelect = (task) => {
@@ -20,16 +21,16 @@ const Tasks = ({list, onEditListTitle}) => {
     const editListTitle = () => {
         const newTitle = window.prompt('List Title', list.name)
 
-        if (newTitle !== '') {
+        if (newTitle && newTitle !== '') {
             onEditListTitle(list.id, newTitle)
 
-        axios
-            .patch('http://localhost:3001/lists/' + list.id, {
-                name: newTitle
-            })
-            .catch(() => {
-                alert('Не удалось обновить имя списка')
-            });
+            axios
+                .patch('http://localhost:3001/lists/' + list.id, {
+                    name: newTitle
+                })
+                .catch(() => {
+                    alert('Не удалось обновить имя списка')
+                });
        }
     }
 
@@ -62,9 +63,7 @@ const Tasks = ({list, onEditListTitle}) => {
             ))}
             </div>
 
-            <div className="add__task">
-                <AiOutlinePlus/> Новая задача
-            </div>
+            <AddTaskForm list={list} onAddTask={onAddTask} />
 
         </div>
 

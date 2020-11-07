@@ -25,7 +25,7 @@ const List = ({items, isRemoveble, onShowForm,  removeList, onClickItem, aciveLi
             <li 
                 onClick={onClickItem ? () => onClickItem(item) : null} 
                 key={item.id} 
-                className={classNames(item.className, {'active': aciveList && aciveList.id === item.id})}>
+                className={classNames(item.className, {'active': item.active ? item.active : aciveList && aciveList.id === item.id})}>
                 <div className="todo__icon">
                     {/* { item.icon || <span className="colorIcon" style={{background: item.color}}></span> } */}
                     {item.icon || <Badge key={`${item.id} ${item.color}`} color={item.color.name}/> }

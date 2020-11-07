@@ -66,11 +66,14 @@
         }
         
     }
+    .task__form {
+        margin-top: 25px;
+    }
     .add__task {
         color: #cccccc;
         display: flex;
         align-items: center;
-        margin-top: 25px;
+        
         transition: all .25s;
         padding: 10px;
         justify-content: center;
@@ -133,3 +136,20 @@
     }
   }
   
+.add__taskForm {
+  input {
+        padding: 10px 10px;
+        margin-bottom: 14px;
+        width: 100%;
+        border: 1px solid #eeeeee;
+        border-radius: 5px;
+        font-weight: 500;
+    }
+    button {
+        margin-right: 15px;
+        padding: 10px 30px;
+        &:disabled {
+            background: #ccc;
+        }
+    }
+}

@@ -50,7 +50,11 @@ const AddList = ({items, colors, onAddList}) => {
     onAddList(listObj)
     onClose();
     
-  }).finally(() => {
+  })
+  .catch((e) => {
+    alert('Ошибка при добавлении списка')
+  })
+  .finally(() => {
     setIsLoading(false);
   });
 
