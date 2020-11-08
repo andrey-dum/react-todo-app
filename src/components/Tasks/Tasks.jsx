@@ -10,12 +10,11 @@ import { AiOutlinePlus } from "react-icons/ai";
 import AddTaskForm from './AddTaskForm';
 
 
-const Tasks = ({list, onEditListTitle, onAddTask}) => {
+const Tasks = ({list, onEditListTitle, onAddTask, withoutEmpty}) => {
     const [check, setCheck] = useState(false)
     
     const onSelect = (task) => {
-        //task = {...task, completed: !completed}
-        //setCheck(e.target.checked)
+        //task
     }
 
     const editListTitle = () => {
@@ -37,12 +36,12 @@ const Tasks = ({list, onEditListTitle, onAddTask}) => {
     return (
         <div className="tasks">
             <div className="tasksTitle__wrapper">
-                <h2 className="tasks__title">{list && list.name}</h2>
+                <h2 style={{color: list.color.hex}} className="tasks__title">{list && list.name}</h2>
                 <BsPencil onClick={editListTitle} />
             </div>
 
             <div className="tasks__items">
-            { !list.tasks.length && <h2>Задачи отсутствуют</h2> }
+            { !withoutEmpty && !list.tasks.length && <h2>Задачи отсутствуют</h2> }
             {list && list.tasks.map(task => (
                 <div className="task" key={task.id}>
                     <div className="checkbox">

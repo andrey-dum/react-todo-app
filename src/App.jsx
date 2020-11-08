@@ -80,6 +80,7 @@ useEffect(() => {
       <h1>TODO APP</h1>
       <div className="todo">
         <div className="todo__sidebar">
+          
         { lists 
           ? <List 
               items={[{ active: true, icon: <BsList />, 
@@ -105,19 +106,28 @@ useEffect(() => {
         </div>
 
         <div className="todo__tasks">
-        {/* <Switch>
-           
           <Route exact  path='/'>
-            <Tasks tasks={db.tasks}/> 
-         </Route>
-          <Route path='/list/:id'>
-            <Tasks tasks={db.tasks}/> 
-         </Route>
+            { lists && lists.map(list => (
+              <Tasks 
+                onAddTask={onAddTask} 
+                list={list} 
+                onEditListTitle={onEditListTitle} 
+                withoutEmpty
+              />
+            )) }
+            
+          </Route>
        
-        </Switch> */}
-     
-          { lists && aciveList && <Tasks onAddTask={onAddTask} list={aciveList && aciveList} onEditListTitle={onEditListTitle} /> }
+          <Route path='/lists/:id'>
+       
+          { lists && aciveList && 
+            <Tasks 
+              onAddTask={onAddTask} 
+              list={aciveList && aciveList} 
+              onEditListTitle={onEditListTitle} 
+            /> }
 
+          </Route>
         </div>
        
       </div>

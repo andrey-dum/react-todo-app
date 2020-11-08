@@ -42,8 +42,7 @@ h1 {
   //max-width: 880px;
   max-width: 900px;
   // max-width: 1100px;
-  min-height: 600px;
-  // min-height: 700px;
+  max-height: 600px;
   display: flex;
   box-shadow: 1px 2px 16px #999;
   border-radius: 10px;
@@ -55,6 +54,7 @@ h1 {
   &__tasks {
     flex: 1;
     padding: 46px 40px;
+    overflow: auto;
   }
   &__sidebar {
     background: #f4f6f8;
