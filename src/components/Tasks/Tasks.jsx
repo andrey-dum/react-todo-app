@@ -27,7 +27,7 @@ const Tasks = ({list, onEditListTitle, onAddTask, withoutEmpty}) => {
                 .patch('http://localhost:3001/lists/' + list.id, {
                     name: newTitle
                 })
-                .catch(() => {
+                .catch((e) => {
                     alert('Не удалось обновить имя списка')
                 });
        }
@@ -45,7 +45,7 @@ const Tasks = ({list, onEditListTitle, onAddTask, withoutEmpty}) => {
             {list && list.tasks.map(task => (
                 <div className="task" key={task.id}>
                     <div className="checkbox">
-                        <input onClick={() => onSelect(task)} checked={task.completed} id={`task-${task.id}`} type="checkbox"/>
+                        <input onClick={() => onSelect(task)} id={`task-${task.id}`} type="checkbox"/>
                         <label htmlFor={`task-${task.id}`}>
                             <FaCheck/>
                         </label>
