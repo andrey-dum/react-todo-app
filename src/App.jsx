@@ -18,7 +18,7 @@ import * as axios from "axios";
 function App() {
   const [lists, setLists] = useState(null);
   const [colors, setColors] = useState(null);
-  const [aciveList, setActiveList] = useState(null);
+  const [activeList, setActiveList] = useState(null);
 
   let history = useHistory();
   
@@ -72,6 +72,77 @@ function App() {
     setLists(newLists);
   };
 
+
+  const onRemoveTask = (listId, taskId) => {
+    if (window.confirm('Удалить?')) {
+        axios
+            .delete('http://localhost:3001/tasks/' + taskId)
+            .then(() => {
+              const newList = lists.map(list => {
+                if(list.id === listId) {
+                  list.tasks = list.tasks.filter(task => task.id !== taskId)
+                }
+                return list;
+              });
+              setLists(newList);
+            })
+            .catch((e) => {
+                alert('Не удалось удалить!')
+            });
+    }
+}
+
+
+const onEditTask = (listId, taskObj) => {
+  const newTaskText = window.prompt('Текст задачи', taskObj.text)
+
+  if (!newTaskText) {
+    return
+  }
+
+  const newList = lists.map(list => {
+    if(list.id === listId) {
+      list.tasks = list.tasks.map(task => {
+        if (task.id === taskObj.id) {
+          task.text = newTaskText
+        }
+        return task
+      })
+    }
+    return list;
+  });
+  setLists(newList);
+
+  axios
+    .patch('http://localhost:3001/tasks/' + taskObj.id, { text: newTaskText })
+    .catch((e) => {
+        alert('Не удалось изменить!')
+    });
+  
+}
+
+const onCompleteTask = (listId, taskId, completed) => {
+  const newList = lists.map(list => {
+    if(list.id === listId) {
+      list.tasks = list.tasks.map(task => {
+        if (task.id === taskId) {
+          task.completed = completed
+        }
+        return task
+      })
+    }
+    return list;
+  });
+  setLists(newList);
+
+  axios
+    .patch('http://localhost:3001/tasks/' + taskId, { completed })
+    .catch((e) => {
+        alert('Не удалось изменить!')
+    });
+  
+}
+
   
 
   useEffect(() => {
@@ -81,7 +152,6 @@ function App() {
       const list = lists.find(item => item.id === Number(listId));
       setActiveList(list);
      }
-     console.log(history.location.pathname)
   }, [lists, history.location.pathname]);
 
   return (
@@ -92,7 +162,7 @@ function App() {
           {lists ? (
             <List
               onClickItem={list => {history.push('/')}}
-              items={[{ active: true, icon: <BsList />, name: "All tasks" }]}
+              items={[{ active: history.location.pathname === '/', icon: <BsList />, name: "All tasks" }]}
             />
           ) : (
             <div className="loading">LOADING...</div>
@@ -103,7 +173,7 @@ function App() {
               isRemoveble
               removeList={removeList}
               onClickItem={onClickItem}
-              aciveList={aciveList && aciveList}
+              activeList={activeList && activeList}
             />
           ) : (
             <div className="loading">LOADING...</div>
@@ -128,6 +198,7 @@ function App() {
             {lists &&
               lists.map(list => (
                 <Tasks
+                  onRemoveTask={onRemoveTask}
                   key={list.id}
                   onAddTask={onAddTask}
                   list={list}
@@ -138,12 +209,14 @@ function App() {
           </Route>
 
           <Route path="/lists/:id">
-            {lists && aciveList && (
+            {lists && activeList && (
               <Tasks
-                
+                onEditTask={onEditTask}
+                onRemoveTask={onRemoveTask}
                 onAddTask={onAddTask}
-                list={aciveList && aciveList}
+                list={activeList && activeList}
                 onEditListTitle={onEditListTitle}
+                onCompleteTask={onCompleteTask}
               />
             )}
           </Route>
